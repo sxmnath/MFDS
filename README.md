@@ -1,2 +1,2 @@
-#   museum-fault_detection_system
+#   museum-fault-detection-system
 
