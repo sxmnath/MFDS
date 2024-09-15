@@ -2,14 +2,18 @@ const express = require('express');
 const sgMail = require('@sendgrid/mail');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
+
+// Serve static files from the "public" directory
+app.use(express.static('public'));
 
 // Enable CORS for all origins
 app.use(cors());
 // Parse JSON bodies
 app.use(express.json());
 
-// Configure SendGrid with your API key
-sgMail.setApiKey('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');
+// Get the API key from the environment variables
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.post('/send-email', (req, res) => {
   const { subject, body, to } = req.body;
